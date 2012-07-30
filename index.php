@@ -1,0 +1,155 @@
+<?php
+session_start();
+
+// Bad-bahavior script
+$path_to_bb = '/var/www/bad-behavior';
+require_once("$path_to_bb/bad-behavior-generic.php");
+
+// Includes the settings from the config file
+include("config.php");
+include("functions.php");
+
+// Opens database connections
+$conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
+mysql_select_db($dbname);
+
+// gets info for MySQL insert
+$dumpersIP = ip_address_to_number($_SERVER['REMOTE_ADDR']);
+
+// Converts $dumpduration into seconds
+$dumpdurationsec = $dumpduration * 60;
+
+// Works out the page numbers
+$page = preg_replace('[\D]', '', $_GET['p']);
+$poststart = $postsperpage * $page ;
+$sqllimit = $poststart.", ".$postsperpage ;
+
+// Next a pervious pages
+$nextpage = $page + 1 ;
+$prepage = $page - 1 ;
+
+if ( $_SESSION['masknumber'] == "" ){
+$ownmask = "Guy_Fawkes";
+} else {
+$ownmask = $_SESSION['masknumber'];
+}
+
+?>
+<html>
+<head>
+<title><?php echo $title; ?></title>
+<script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+</script>
+  <style type="text/css">
+	body {
+    		font-family: arial, verdana, sans-serif;
+    		background-color: #FEFEFE }
+	a.shadowtexttitle:link {
+  		text-shadow: 2px 2px 1px rgba(0,0,0,0.4);
+		font-size:300% ;
+		float: center;
+		text-decoration: none;
+	}
+	a.shadowtexttitle:vlink {
+  		text-shadow: 2px 2px 1px rgba(0,0,0,0.4);
+		font-size:300% ;
+		float: center;
+		text-decoration: none;
+	}
+	.shadowtexttag {
+  		text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+		font-size:100%
+		float: center;
+	}
+  </style>
+<META HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshrate; ?>">
+</head>
+
+<a alt="Forget me" href="/forget.php"><img src="masks/<?php echo $ownmask; ?>.jpg" style="float:right;margin:0 5px 0 0;-moz-transform: scaleX(-1); -o-transform: scaleX(-1); -webkit-transform: scaleX(-1); transform: scaleX(-1); filter: FlipH; -ms-filter: 'FlipH';" /></a>
+
+<center>
+<b><a href="/" class="shadowtexttitle"><?php echo $title; ?></a></br>
+<font class="shadowtexttag"><?php echo $tagline; ?></font><br>
+</center>
+
+<center>
+<form name="post" action="post.php" method="POST">
+<form name="myform">
+<textarea style="width:95%;" rows="8" name="limitedtextarea" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);" 
+onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);">
+</textarea><br>
+<font size="1">
+You have <input readonly type="text" name="countdown" size="3" value="<?php echo $textlength; ?>"> characters left.</br>
+Mask seed (optional) <input type="password" value="<?php echo $_SESSION['maskseed']; ?>" name="maskseed" title="Mask Seed" size="16" maxlength="32" /><INPUT TYPE=SUBMIT VALUE="Post"></font><br>
+</form>
+</center>
+<?php
+
+// creates extra query for hash and mask tags
+// Gets hash and mask data
+$hash = mysql_real_escape_string($_GET['h']);
+$mask = mysql_real_escape_string($_GET['m']);
+
+// Checks hash
+if ($hash == "") {
+// do nothing
+} else {
+$hashsearch = "`posttext` REGEXP  '#".$hash."' ";
+// also creates hashurl
+$hashtagurl = "&h=".$hash;
+$wherestatement = "WHERE ".$hashsearch." ";
+}
+
+// Checks mask
+if ($mask == "") {
+// do nothing
+} else {
+$masksearch = "`masknumber` =  '".$mask."' ";
+// also creates hashurl
+$masktagurl = "&m=".$mask;
+$wherestatement = "WHERE ".$masksearch." ";
+}
+
+// Creates where statement if mask AND hash exist
+if ($hash != "" AND $mask != "") {
+$wherestatement = "WHERE ".$hashsearch." AND ".$masksearch." ";
+}
+
+// creates longer select statement
+$sql = 'SELECT *  FROM `postview` '.$wherestatement.'ORDER BY `timestamp` DESC LIMIT '.$sqllimit.'';
+// queries sql db
+$query = mysql_query($sql);
+while($row = mysql_fetch_array($query)) {
+echo '
+<table width="100%" border="0">
+<tr>
+<td colspan="2">
+<hr>
+</td>
+</tr>
+<tr valign="top">
+<td style="width:140px;text-align:top;">
+<a href="/?m='.$row['masknumber'].'"><img src="https://anon.gho.st/masks/'.$row['masknumber'].'.'.$filetype.'" width="'.$width.'" height="'.$height.'"></a><br><font size="1">posted '.$row['sincetime'].' ago.</font>
+</td>
+<td style="width:100%;text-align:top;">
+'.addhashtags(nl2br(htmlentities($row['posttext']))).'
+</tr>
+
+</table>';
+}
+?>
+<br>
+<a href="/?p=<?php echo $nextpage."".$hashtagurl.$masktagurl; ?>">Older posts</a>
+<hr size=2 color='#"555"'>
+<div align='center'><font size="1" color="#888">This free beta service is brought to you by <a href="http://gho.st">Gho.st community ISP</a>. Engine designed & developed by <a href="http://gregology.net">Gregology</a> and original Guy Fawkes image created by <a href="http://openclipart.org/user-detail/rones">Rones</a>. If you would like to develop this engine further please contact us via the <a href="http://gho.st">Gho.st homepage</a>. Please respect intellectual property. Enjoy!</font></div><br>
+<?php //echo $sql; ?>
+</body>
+</html>
+
