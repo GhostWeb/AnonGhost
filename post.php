@@ -2,8 +2,7 @@
 session_start();
 
 // Bad-bahavior script
-$path_to_bb = '/var/www/bad-behavior';
-require_once("$path_to_bb/bad-behavior-generic.php");
+//require_once("$path_to_bb/bad-behavior-generic.php");
 
 // checks for no lanugage spam
 $language = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ; //language code
