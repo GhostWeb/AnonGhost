@@ -26,6 +26,7 @@ session_start();
 // Includes the settings from the config file
 include("config.php");
 include("functions.php");
+include("plugins.php");
 
 // Opens database connections
 $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
