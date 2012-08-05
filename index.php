@@ -27,9 +27,6 @@ session_start();
 include("config.php");
 include("functions.php");
 
-// Optional Bad-bahavior script
-// require_once("$path_to_bb/bad-behavior-generic.php");
-
 // Opens database connections
 $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
 mysql_select_db($dbname);

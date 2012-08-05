@@ -33,8 +33,10 @@ $postlimit = 20;
 # Extra salt. Note: This is a random string which is added to the hashes to make them more random. If you change this string all users will get new faces
 $extrasalt = "cHatREFuWut8s79haRetrABe-!s9e7wfT4!2j2=LC%>7,{f$=O.<7;v4SuhecEF=emUSU9t6c=hU8hubRe6X:3e3R8=,%b{u1 KF68~153F8P-lo,UVAMep2eXu7ytuIBB10T2h1lO7~pG=3Viodqdw";
 
-#  Bad-bahavior script location
-$path_to_bb = '/var/www/bad-behavior';
+# Optional Bad-bahavior script
+# Script location
+// $path_to_bb = '/var/www/bad-behavior';
+// require_once("$path_to_bb/bad-behavior-generic.php");
 
 # Enjoy!
 ?>
