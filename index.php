@@ -66,9 +66,9 @@ function limitText(limitField, limitCount, limitNum) {
 	}
 }
 </script>
-  <style type="text/css">
+<style type="text/css">
 	body {
-    		font-family: arial, verdana, sans-serif;
+		font-family: arial, verdana, sans-serif;
     		background-color: #FEFEFE }
 	a.shadowtexttitle:link {
   		text-shadow: 2px 2px 1px rgba(0,0,0,0.4);
@@ -87,27 +87,27 @@ function limitText(limitField, limitCount, limitNum) {
 		font-size:100%
 		float: center;
 	}
-  </style>
+</style>
 <META HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshrate; ?>">
 </head>
 
 <a alt="Forget me" href="/forget.php"><img src="masks/<?php echo $ownmask; ?>.jpg" style="float:right;margin:0 5px 0 0;-moz-transform: scaleX(-1); -o-transform: scaleX(-1); -webkit-transform: scaleX(-1); transform: scaleX(-1); filter: FlipH; -ms-filter: 'FlipH';" /></a>
 
 <center>
-<b><a href="/" class="shadowtexttitle"><?php echo $title; ?></a></br>
-<font class="shadowtexttag"><?php echo $tagline; ?></font><br>
+	<b><a href="/" class="shadowtexttitle"><?php echo $title; ?></a></br>
+	<font class="shadowtexttag"><?php echo $tagline; ?></font><br></b>
 </center>
 
 <center>
-<form name="post" action="post.php" method="POST">
-<form name="myform">
-<textarea style="width:95%;" rows="8" name="limitedtextarea" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);" 
+	<form name="post" action="post.php" method="POST">
+	<form name="myform">
+	<textarea style="width:95%;" rows="8" name="limitedtextarea" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);" 
 onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);">
-</textarea><br>
-<font size="1">
-You have <input readonly type="text" name="countdown" size="3" value="<?php echo $textlength; ?>"> characters left.</br>
-Mask seed (optional) <input type="password" value="<?php echo $_SESSION['maskseed']; ?>" name="maskseed" title="Mask Seed" size="16" maxlength="32" /><INPUT TYPE=SUBMIT VALUE="Post"></font><br>
-</form>
+	</textarea><br>
+	<font size="1">
+	You have <input readonly type="text" name="countdown" size="3" value="<?php echo $textlength; ?>"> characters left.</br>
+	Mask seed (optional) <input type="password" value="<?php echo $_SESSION['maskseed']; ?>" name="maskseed" title="Mask Seed" size="16" maxlength="32" /><INPUT TYPE=SUBMIT VALUE="Post"></font><br>
+	</form>
 </center>
 <?php
 
@@ -148,27 +148,28 @@ $query = mysql_query($sql);
 while($row = mysql_fetch_array($query)) {
 echo '
 <table width="100%" border="0">
-<tr>
-<td colspan="2">
-<hr>
-</td>
-</tr>
-<tr valign="top">
-<td style="width:140px;text-align:top;">
-<a href="/?m='.$row['masknumber'].'"><img src="https://anon.gho.st/masks/'.$row['masknumber'].'.'.$filetype.'" width="'.$width.'" height="'.$height.'"></a><br><font size="1">posted '.$row['sincetime'].' ago.</font>
-</td>
-<td style="width:100%;text-align:top;">
-'.addhashtags(nl2br(htmlentities($row['posttext']))).'
-</tr>
-
-</table>';
+	<tr>
+		<td colspan="2">
+			<hr>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td style="width:140px;text-align:top;">
+			<a href="/?m='.$row['masknumber'].'"><img src="https://anon.gho.st/masks/'.$row['masknumber'].'.'.$filetype.'" width="'.$width.'" height="'.$height.'"></a><br><font size="1">posted '.$row['sincetime'].' ago.</font>
+		</td>
+	<td style="width:100%;text-align:top;">
+		'.addhashtags(nl2br(htmlentities($row['posttext']))).'
+	</tr>
+</table>
+';
 }
 ?>
 <br>
 <a href="/?p=<?php echo $nextpage."".$hashtagurl.$masktagurl; ?>">Older posts</a>
 <hr size=2 color='#"555"'>
-<div align='center'><font size="1" color="#888">This free beta service is brought to you by <a href="http://gho.st">Gho.st community ISP</a>. Engine designed & developed by <a href="http://gregology.net">Gregology</a> and original Guy Fawkes image created by <a href="http://openclipart.org/user-detail/rones">Rones</a>. If you would like to develop this engine further please contact us via the <a href="http://gho.st">Gho.st homepage</a>. Please respect intellectual property. Enjoy!</font></div><br>
-<?php //echo $sql; ?>
+	<div align='center'>
+		<font size="1" color="#888">This free beta service is brought to you by <a href="http://gho.st">Gho.st community ISP</a>. Engine designed & developed by <a href="http://gregology.net">Gregology</a> and original Guy Fawkes image created by <a href="http://openclipart.org/user-detail/rones">Rones</a>. If you would like to develop this engine further please contact us via the <a href="http://gho.st">Gho.st homepage</a>. Please respect intellectual property. Enjoy!
+		</font>
+	</div>
 </body>
 </html>
-
