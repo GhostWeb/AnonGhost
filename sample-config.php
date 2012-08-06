@@ -32,7 +32,7 @@ $limitperiod = 10;
 $postlimit = 20;
 
 # Extra salt. Note: This is a random string which is added to the hashes to make them more random. If you change this string all users will get new faces
-$extrasalt = "cHatREFuWut8s79haRetrABe-!s9e7wfT4!2j2=LC%>7,{f$=O.<7;v4SuhecEF=emUSU9t6c=hU8hubRe6X:3e3R8=,%b{u1 KF68~153F8P-lo,UVAMep2eXu7ytuIBB10T2h1lO7~pG=3Viodqdw";
+$extrasalt = "uPen1s-8alls+D1CKS}W4NGS\9RetrABe-!s9e7wfT4!2j2=LC%>7,{f$=O.<7;v4SuhecEF=emUSU9t6c=hU8hubRe6X:3e3R8=,%b{u1 KF68~153F8P-lo,UVAMep2eXu7ytuIBB10T2h1lO7~pG=3Viodqdw";
 
 # Enjoy!
 ?>
