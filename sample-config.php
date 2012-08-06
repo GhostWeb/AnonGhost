@@ -1,5 +1,6 @@
 <?
-# Please edit these settings to suit your install. If you have any issues please contact me via my website http://www.gregology.net/contact
+# Edit these settings to suit your install and rename the file "config.php".
+# If you have any issues please contact me via my website http://www.gregology.net/contact
 
 # Title and tagline
 $title = "Anon Ghost";
