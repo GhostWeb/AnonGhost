@@ -102,8 +102,7 @@ function limitText(limitField, limitCount, limitNum) {
 	<form name="post" action="post.php" method="POST">
 	<form name="myform">
 	<textarea style="width:95%;" rows="8" name="limitedtextarea" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);" 
-onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);">
-	</textarea><br>
+onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);"></textarea><br>
 	<font size="1">
 	You have <input readonly type="text" name="countdown" size="3" value="<?php echo $textlength; ?>"> characters left.</br>
 	Mask seed (optional) <input type="password" value="<?php echo $_SESSION['maskseed']; ?>" name="maskseed" title="Mask Seed" size="16" maxlength="32" /><INPUT TYPE=SUBMIT VALUE="Post"></font><br>

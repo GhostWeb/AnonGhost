@@ -65,17 +65,6 @@ die(mysql_error());
 }
 }
 
-/* not needed anymore
-if (file_exists("masks/".$masknumber.".".$filetype)) {
-	// Does nothing
-} else {
-	// Makes mask
-	include("makemask.php");
-	// Will include if masks not generating quickly enough
-#	sleep(1);
-}
-*/
-
 header("Location: /");
 
 ?>
