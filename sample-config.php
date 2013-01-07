@@ -13,7 +13,7 @@ $refreshrate = 600;
 $width = "60";
 $height = "76";
 $filetype = "jpg";
-$quality = "90";
+$quality = "85";
 
 # MySQL Database settings. Note: The database needs to be created manually. I might make a install application in later versions.
 $dbhost = 'localhost';
