@@ -5,7 +5,8 @@
     mask-seed to create private identities so users can create trusted
     relationships.
     Check out http://anon.gho.st for a working version.
-    Copyright (C) 2012 Gregology
+    Copyright (C) 2013 Gregology
+    Version 0.1
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
