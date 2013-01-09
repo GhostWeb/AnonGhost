@@ -167,7 +167,7 @@ echo '
 <a href="/?p=<?php echo $nextpage."".$hashtagurl.$masktagurl; ?>">Older posts</a>
 <hr size=2 color='#"555"'>
 	<div align='center'>
-		<font size="1" color="#888">This free beta service is brought to you by <a href="http://gho.st">Gho.st community ISP</a>. Engine designed & developed by <a href="http://gregology.net">Gregology</a> and original Guy Fawkes image created by <a href="http://openclipart.org/user-detail/rones">Rones</a>. If you would like to develop this engine further please contact us via the <a href="http://gho.st">Gho.st homepage</a>. Please respect intellectual property. Enjoy!
+		<font size="1" color="#888">This service is brought to you by <a href="http://gho.st">Gho.st community ISP</a>. Engine is open source and avaliable on <a href="https://github.com/GhostWeb/AnonGhost">GitHub</a>. The original Guy Fawkes image was created by <a href="http://openclipart.org/user-detail/rones">Rones</a>. Help develop this engine and join the anonymous conversation. Please respect intellectual property. Enjoy!
 		</font>
 	</div>
 </body>
