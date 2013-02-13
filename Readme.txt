@@ -9,7 +9,7 @@ System requirements
 * MySQL
 
 Check out http://anon.gho.st for a working version.
-Copyright (C) 2012 Gregology
+Copyright (C) 2013 Gregology
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
