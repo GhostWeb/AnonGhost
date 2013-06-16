@@ -113,8 +113,8 @@ onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $tex
 
 // creates extra query for hash and mask tags
 // Gets hash and mask data
-$hash = mysql_real_escape_string($_GET['h']);
-$mask = mysql_real_escape_string($_GET['m']);
+$hash = mysql_real_escape_string(htmlspecialchars($_GET['h'], ENT_QUOTES, 'UTF-8'));
+$mask = mysql_real_escape_string(htmlspecialchars($_GET['m'], ENT_QUOTES, 'UTF-8'));
 
 // Checks hash
 if ($hash == "") {
