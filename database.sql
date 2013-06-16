@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 08, 2013 at 07:07 PM
--- Server version: 5.1.66
--- PHP Version: 5.3.2-1ubuntu4.18
+-- Generation Time: Jun 16, 2013 at 06:19 PM
+-- Server version: 5.1.69
+-- PHP Version: 5.3.2-1ubuntu4.19
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -22,17 +22,31 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `floodlimit`
+--
+
+DROP TABLE IF EXISTS `floodlimit`;
+CREATE TABLE IF NOT EXISTS `floodlimit` (
+  `hash` char(32) NOT NULL,
+  `count` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`hash`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posts`
 --
 
--- DROP TABLE IF EXISTS `posts`;
+DROP TABLE IF EXISTS `posts`;
 CREATE TABLE IF NOT EXISTS `posts` (
   `postID` int(8) NOT NULL AUTO_INCREMENT,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `masknumber` varchar(18) NOT NULL,
+  `masknumber` char(18) NOT NULL,
   `posttext` varchar(1024) NOT NULL,
+  `parentID` int(8) DEFAULT NULL,
   PRIMARY KEY (`postID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3324 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4201 ;
 
 -- --------------------------------------------------------
 
@@ -43,7 +57,7 @@ DROP VIEW IF EXISTS `postview`;
 CREATE TABLE IF NOT EXISTS `postview` (
 `postID` int(8)
 ,`sincetime` text
-,`masknumber` varchar(18)
+,`masknumber` char(18)
 ,`posttext` varchar(1024)
 ,`TIMESTAMP` timestamp
 );
@@ -64,7 +78,7 @@ DROP FUNCTION IF EXISTS `timeconvert`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `timeconvert`(seconds INT) RETURNS text CHARSET utf8
 BEGIN
 
-  DECLARE displaytime VARCHAR(20);
+	DECLARE displaytime VARCHAR(20);
 
 		IF seconds = 1 THEN SET displaytime = '1 second';
 		ELSEIF seconds < 60 THEN SET displaytime = (Concat(seconds,CONVERT(' seconds' USING utf8)));
