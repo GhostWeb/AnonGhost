@@ -113,8 +113,8 @@ onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $tex
 
 // creates extra query for hash and mask tags
 // Gets hash and mask data
-$hash = mysql_real_escape_string(htmlspecialchars($_GET['h'], ENT_QUOTES, 'UTF-8'));
-$mask = mysql_real_escape_string(htmlspecialchars($_GET['m'], ENT_QUOTES, 'UTF-8'));
+$hash = mysql_real_escape_string($_GET['h']);
+$mask = mysql_real_escape_string($_GET['m']);
 
 // Checks hash
 if ($hash == "") {
@@ -158,7 +158,7 @@ echo '
 			<a href="/?m='.$row['masknumber'].'"><img src="https://anon.gho.st/masks/'.$row['masknumber'].'.'.$filetype.'" width="'.$width.'" height="'.$height.'"></a><br><font size="1">posted '.$row['sincetime'].' ago.</font>
 		</td>
 	<td style="width:100%;text-align:top;">
-		'.addhashtags(nl2br(htmlentities($row['posttext']))).'
+		'.addhashtags(nl2br(htmlspecialchars(htmlentities($row['posttext'])), ENT_QUOTES, 'UTF-8')).'
 	</tr>
 </table>
 ';
