@@ -158,7 +158,7 @@ echo '
 			<a href="/?m='.$row['masknumber'].'"><img src="https://anon.gho.st/masks/'.$row['masknumber'].'.'.$filetype.'" width="'.$width.'" height="'.$height.'"></a><br><font size="1">posted '.$row['sincetime'].' ago.</font>
 		</td>
 	<td style="width:100%;text-align:top;">
-		'.addhashtags(nl2br(htmlspecialchars(htmlentities($row['posttext'])), ENT_QUOTES, 'UTF-8')).'
+		'.addhashtags(nl2br(htmlentities($row['posttext']))).'
 	</tr>
 </table>
 ';
