@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2013 at 06:19 PM
+-- Generation Time: Jun 16, 2013 at 07:12 PM
 -- Server version: 5.1.69
 -- PHP Version: 5.3.2-1ubuntu4.19
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `posttext` varchar(1024) NOT NULL,
   `parentID` int(8) DEFAULT NULL,
   PRIMARY KEY (`postID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4201 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4203 ;
 
 -- --------------------------------------------------------
 
@@ -68,14 +68,14 @@ CREATE TABLE IF NOT EXISTS `postview` (
 --
 DROP TABLE IF EXISTS `postview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `postview` AS select `posts`.`postID` AS `postID`,`timeconvert`(time_to_sec(timediff(now(),`posts`.`timestamp`))) AS `sincetime`,`posts`.`masknumber` AS `masknumber`,`posts`.`posttext` AS `posttext`,`posts`.`timestamp` AS `TIMESTAMP` from `posts` order by `posts`.`timestamp` desc;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `postview` AS select `posts`.`postID` AS `postID`,`timeconvert`((unix_timestamp(now()) - unix_timestamp(`posts`.`timestamp`))) AS `sincetime`,`posts`.`masknumber` AS `masknumber`,`posts`.`posttext` AS `posttext`,`posts`.`timestamp` AS `TIMESTAMP` from `posts` order by `posts`.`timestamp` desc;
 
 DELIMITER $$
 --
 -- Functions
 --
 DROP FUNCTION IF EXISTS `timeconvert`$$
-CREATE DEFINER=`root`@`localhost` FUNCTION `timeconvert`(seconds INT) RETURNS text CHARSET utf8
+CREATE DEFINER=`greg`@`%` FUNCTION `timeconvert`(seconds BIGINT) RETURNS text CHARSET utf8
 BEGIN
 
 	DECLARE displaytime VARCHAR(20);
