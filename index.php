@@ -154,6 +154,8 @@ $sql = 'SELECT *  FROM `postview` '.$wherestatement.'ORDER BY `timestamp` DESC L
 // queries sql db
 $query = mysql_query($sql);
 while($row = mysql_fetch_array($query)) {
+$textsize = round( ((( $textlength - strlen($row['posttext']) ) / $textlength ) * ( 14 - 4 )) + 4 ) ;
+
 echo '
     <table width="100%" border="0">
       <tr>
@@ -165,7 +167,7 @@ echo '
         <td style="width:140px;text-align:top;">
           <a href="/?m='.$row['masknumber'].'"><img src="https://anon.gho.st/masks/'.$row['masknumber'].'.'.$filetype.'" width="'.$width.'" height="'.$height.'"></a><br><font size="1">posted '.$row['sincetime'].' ago.</font>
         </td>
-      <td style="width:100%;text-align:top;">
+      <td style="width:100%;text-align:top;font-size:'.$textsize.'px;">
         <PRE>'.addhashtags(htmlentities($row['posttext'])).'</PRE>
       </tr>
     </table>';
