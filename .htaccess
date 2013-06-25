@@ -2,5 +2,5 @@ RewriteEngine on
 RewriteCond %{HTTPS} !on
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 <FilesMatch "\.(jpg)$">
-ErrorDocument 404 /masks/makemask.php
+ErrorDocument 404 /masks/makesnowdenmask.php
 </FilesMatch>
